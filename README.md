@@ -1,15 +1,6 @@
 # java-calculator-precourse
-# **문자열 덧셈 계산기**
 
-## **과제 진행 요구 사항**
-
-- 미션은 [문자열 덧셈 계산기](https://github.com/woowacourse-precourse/java-calculator-8) 저장소를 포크하고 클론하는 것으로 시작한다.
-- **기능을 구현하기 전 `README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
-    - [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)을 참고해 커밋 메시지를 작성한다.
-- 자세한 과제 진행 방법은 프리코스 진행 가이드 문서를 참고한다.
-
-## **기능 요구 사항**
+## **1. 기능 요구 사항**
 
 입력한 문자열에서 숫자를 추출하여 더하는 계산기를 구현한다.
 
@@ -53,45 +44,31 @@
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
     - 기본적으로 [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/blob/main/styleguide/java)를 원칙으로 한다.
 
-### **라이브러리**
-
-- `camp.nextstep.edu.missionutils`에서 제공하는 `Console` API를 사용하여 구현해야 한다.
-    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-
-
 --- 
+## 2. 구현할 기능
+
 ### 1. 문자열(string) 입력 받기
 - [x] 입력: "덧셈할 문자열을 입력해 주세요.\n"
 - [x] 문자열 입력 받기
-
+      
 ### 2. 구분자 구하기
-- [ ] 배열에 커스텀 구분자 저장 후 "//", "\n" 제거
-- [ ] 쉼표, 콜론 저장
+- [ ] 정규식을 이용하여 커스텀 구분자 구하기 → 구한 후 커스텀 표시("//"+"\n")를 해당 구분자로 대체
 
-### 3. 잘못 된 값 입력 시 IllegalArgumentException 출력 및 종료
-- [ ] 문자열에 쉼표, 콜론, 커스텀 구분자 이외에 문자가 들어갔는가 
+### 3. 검증하기
+- [ ] 빈 문자열 입력 → return 0
+- [ ] 쉼표, 콜론, 커스텀 구분자 이외에 문자가 들어갔는가 → IllegalArgumentException
+- [ ] 커스텀 구분자가 제대로 끝나지 않은 경우 → IllegalArgumentException
+- [ ] 문자열에 space가 있는 경우 → IllegalArgumentException
 
-### 3. 구분자로 split하기
-- [ ] 구분자를 기준으로 문자열 split
-- [ ] split한 개수 고려
+#### 3-1. 추후 고려할 사항
+- [ ] '+'가 숫자 앞에 붙어있다. → '+'제거 후 양수 판별
+- [ ] '.'이 숫자 사이에 있다. → 소수점으로 계산
 
-### 4. 변환 한 양수, 배열에 저장
-- [ ] split된 숫자를 배열에 저장
+### 4. 구분자로 parse
+- [ ] 구분자를 기준으로 문자열 parse
 
-### 6. 저장된 배열 값의 합
-- [ ] 배열의 합
-
-### 7. 출력하기
+### 5. 출력하기
 - [ ] 출력: "결과 : {값}"
 
 ## 고려할 점
-1. 문자열 입력받기
-- [ ] 숫자와 구분자가 합쳐진 문자열 입력
-- [ ] 숫자만 있는 문자열 입력
-- [ ] 구분자만 있는 문자열 입력
-- [ ] 빈 문자열 입력
-      
-2. 양수로 구분된 문자열? +가 붙은 채로 올 수 있나?
-3. 문자열이 int범위를 벗어나면 어떡하지?
-4. 소수로 입력되면?
-5. 커스텀 구분자가 여러 개라면?
+1. 문자열이 int범위를 벗어나면 어떡하지?
