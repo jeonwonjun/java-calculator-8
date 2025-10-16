@@ -47,28 +47,64 @@
 --- 
 ## 2. 구현할 기능
 
-### 1. 문자열(string) 입력 받기
+### (1) 문자열(string) 입력 받기
 - [x] 입력: "덧셈할 문자열을 입력해 주세요.\n"
 - [x] 문자열 입력 받기
       
-### 2. 구분자 구하기
+### (2) 구분자 구하기
 - [ ] 정규식을 이용하여 커스텀 구분자 구하기 → 구한 후 커스텀 표시("//"+"\n")를 해당 구분자로 대체
 
-### 3. 검증하기
+### (3) 검증하기
 - [ ] 빈 문자열 입력 → return 0
 - [ ] 쉼표, 콜론, 커스텀 구분자 이외에 문자가 들어갔는가 → IllegalArgumentException
 - [ ] 커스텀 구분자가 제대로 끝나지 않은 경우 → IllegalArgumentException
 - [ ] 문자열에 space가 있는 경우 → IllegalArgumentException
 
-#### 3-1. 추후 고려할 사항
+### (3-1) 추후 고려할 사항
 - [ ] '+'가 숫자 앞에 붙어있다. → '+'제거 후 양수 판별
 - [ ] '.'이 숫자 사이에 있다. → 소수점으로 계산
 
-### 4. 구분자로 parse
+### (4) 구분자로 parse
 - [ ] 구분자를 기준으로 문자열 parse
 
-### 5. 출력하기
+### (5) 덧셈 계산
+- [ ] parse된 tokens을 더하기
+
+### (6) 계산과정 검증하기
+- [ ] 숫자 또는 숫자의 합이 int형이 아니거나 int범위를 넘어간다면?
+
+### (7) 출력하기
 - [ ] 출력: "결과 : {값}"
 
-## 고려할 점
-1. 문자열이 int범위를 벗어나면 어떡하지?
+---
+## 3. Commit Conventions
+- Git의 커밋 단위는 앞 단계에서 README.md에 정리한 기능 목록 단위로 추가한다.
+    - [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)를 참고하여 커밋 메시지를 작성한다.
+
+### Format of the commit message
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+### (1) type
+| **type** | **설명** |
+| --- | --- |
+| **feat** | 새로운 기능 추가 |
+| **fix** | 버그 수정 |
+| **docs** | 문서 수정 (README 등) |
+| **style** | 코드 포맷팅, 세미콜론 누락 등 스타일 변경 |
+| **refactor** | 코드 리팩토링 (기능 변경 없음) |
+| **test** | 테스트 코드 추가 및 수정 |
+| **chore** | 빌드, 설정 파일 등 기타 작업 |
+
+### (2) scope
+| **scope** | **feature** |
+| --- | --- |
+| **parser** | 문자열 분리 (2, 4) |
+| **validation** | 검증 및 예외처리 (3, 6) |
+| **calculator** | 계산기 기능 (5) |
+| **io** | 입출력 (1, 7) |
