@@ -12,7 +12,9 @@ public class Application {
         String input = Input.input();
         // 2. 커스텀 구분자 구하기
         String customDelimiter = GetDelimiter.getDelimiter(input);
+//        System.out.println(customDelimiter);
+        Validator.validateInput(customDelimiter);
         input = GetDelimiter.removeCustomCondition(input, customDelimiter);
-        System.out.println(input);
+//        System.out.println(input);
     }
 }

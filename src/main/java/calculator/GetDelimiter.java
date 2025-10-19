@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class GetDelimiter {
 
-    public static Pattern pattern = Pattern.compile("//([^a-zA-Z0-9|\\s])\\\\n");
+    public static Pattern pattern = Pattern.compile("//(.+?)\\\\n");
 
     // 구분자 구하기
     public static String getDelimiter(String input) {
@@ -24,7 +24,7 @@ public class GetDelimiter {
     // 구분자 조건 제거
     public static String removeCustomCondition(String input, String customDelimiter) {
         if (ishasCustomDelimiter(input)) {
-            input = input.replaceFirst("//" + customDelimiter + "\\\\n", customDelimiter);
+            input = input.replaceFirst("//" + customDelimiter + "\\\\n", "");
         }
 
         return input;
