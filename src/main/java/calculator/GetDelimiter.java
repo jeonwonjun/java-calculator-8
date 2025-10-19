@@ -7,20 +7,37 @@ import java.util.regex.Pattern;
 
 public class GetDelimiter {
 
-    // 2. 구분자 구하기
-    public ArrayList<String> getDelimiter(String input) {
-        Pattern pattern = Pattern.compile("//([^a-zA-Z0-9|\\s])\\\\n");
+    public static Pattern pattern = Pattern.compile("//([^a-zA-Z0-9|\\s])\\\\n");
+
+    // 구분자 구하기
+    public static String getDelimiter(String input) {
+
         Matcher matcher = pattern.matcher(input);
 
-        ArrayList<String> delimiter = new ArrayList<>(
-                Arrays.asList(",", ":")
-        );
-
         if (matcher.find()) {
-            delimiter.add(matcher.group(1));
+            return matcher.group(1);
         }
 
-        return delimiter;
+        return null;
+    }
+
+    // 구분자 조건 제거
+    public static String removeCustomCondition(String input, String customDelimiter) {
+        if (ishasCustomDelimiter(input)) {
+            input = input.replaceFirst("//" + customDelimiter + "\\\\n", customDelimiter);
+        }
+
+        return input;
+    }
+
+    // 구분자가 존재하는가
+    public static boolean ishasCustomDelimiter(String input) {
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            return true;
+        }
+
+        return false;
     }
 
 }
