@@ -7,7 +7,7 @@ public class Application {
 
         int result;
         String input = Input.input();
-        
-
+        result = Calculator.add(input);
+        Output.output(result);
     }
 }
