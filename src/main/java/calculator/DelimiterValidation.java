@@ -1,10 +1,10 @@
 package calculator;
 
-public class Validator {
+public class DelimiterValidation {
 
     // 구분자가 숫자일 경우
-    public static boolean validateCustomDelimiterChar(String delimiter) {
-//        String delimiter = GetDelimiter.getDelimiter(input);
+    public static boolean validateCustomDelimiterChar(String input) {
+        String delimiter = GetDelimiter.getDelimiter(input);
         if (delimiter == null || delimiter.isEmpty()) {
             return false;
         }
@@ -13,8 +13,8 @@ public class Validator {
     }
 
     // 구분자가 숫자일 경우
-    public static boolean validateCustomDelimiterDigit(String delimiter) {
-//        String delimiter = GetDelimiter.getDelimiter(input);
+    public static boolean validateCustomDelimiterDigit(String input) {
+        String delimiter = GetDelimiter.getDelimiter(input);
         if (delimiter == null || delimiter.isEmpty()) {
             return false;
         }
@@ -23,8 +23,8 @@ public class Validator {
     }
 
     // 구분자가 한글자인지 판별
-    public static boolean validateCustomDelimiterLength(String delimiter) {
-//        String delimiter = GetDelimiter.getDelimiter(input);
+    public static boolean validateCustomDelimiterLength(String input) {
+        String delimiter = GetDelimiter.getDelimiter(input);
         if (delimiter == null) {
             return true;
         }
@@ -33,9 +33,12 @@ public class Validator {
     }
 
     // 구분자 검증
-    public static boolean validateInput(String input) {
-        input = input.replaceAll("\\s+", "");
+    public static boolean validateCustomDelimiter(String input) {
+        input = input.replaceAll("\\s", "");
 
+        if (!input.startsWith("//") || !input.contains("\\n")) {
+            return false;
+        }
         if (!validateCustomDelimiterLength(input)) {
             System.out.println("커스텀 구분자가 한 글자가 아닙니다.");
             return false;
