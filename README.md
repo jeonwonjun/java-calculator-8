@@ -64,7 +64,6 @@
 
 - [ ] 빈 문자열 입력 → return 0
 - [ ] 쉼표, 콜론, 커스텀 구분자 이외에 문자가 들어갔는가 → IllegalArgumentException
-- [ ] 커스텀 구분자가 제대로 끝나지 않은 경우 → IllegalArgumentException
 
 ### (3-1) 추후 고려할 사항
 
