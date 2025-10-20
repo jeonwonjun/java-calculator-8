@@ -14,6 +14,12 @@ public class ErrorMessage {
     // 잘못된 커스텀 구분자 사용
     public static final String WRONG_DELIMITER_FORMAT = "잘못된 구분자 형식입니다.";
 
+    // 구분자가 없을 때
+    public static final String EMPTY_CUSTOM_DELIMITER = "커스텀 구분자가 공백입니다.";
+
+    // 구분자가 한 글자 이상일 때
+    public static final String WRONG_CUSTOM_DELIMITER_LENGTH = "커스텀 구분자가 한 글자 이상입니다.";
+
     // 숫자를 커스텀 구분자로 사용
     public static final String DIGIT_NOT_ALLOW = "숫자는 구분자로 사용할 수 없습니다.";
 
