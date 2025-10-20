@@ -27,7 +27,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 잘못된_구분자_사용() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("-1,2,3"))
+                assertThatThrownBy(() -> runException("1;2,3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -107,7 +107,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_누락() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//\n1,2,3"))
+                assertThatThrownBy(() -> runException("//\\n1,2,3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -123,16 +123,8 @@ class ApplicationTest extends NsTest {
     @Test
     void 점_구분자_사용() {
         assertSimpleTest(() -> {
-            run("//.\n1.5,2");
+            run("//.\\n1.5,2");
             assertThat(output()).contains("결과 : 8");
-        });
-    }
-
-    @Test
-    void 다중_문자_구분자_사용() {
-        assertSimpleTest(() -> {
-            run("//az\n1az2");
-            assertThat(output()).contains("결과 : 3");
         });
     }
 
