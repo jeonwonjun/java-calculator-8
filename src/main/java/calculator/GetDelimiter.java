@@ -11,12 +11,14 @@ public class GetDelimiter {
 
     // 구분자 구하기
     public static String getDelimiter(String input) {
-
+        if (input.startsWith("//")) {
+            DelimiterValidation.validateCustomDlimiterFormat(input);
+        }
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
             String cutomDelimiter = matcher.group(1);
-            InputValidation.validateCustomDelimiter(cutomDelimiter);
+            DelimiterValidation.validateCustomDelimiter(cutomDelimiter);
             return cutomDelimiter;
         }
 

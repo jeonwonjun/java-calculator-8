@@ -2,15 +2,14 @@ package calculator;
 
 public class Parse {
     public static String[] inputParse(String input) {
-        input = input.replaceAll("\\s", "");
-        boolean validateCustomDelimiter = DelimiterValidation.validateCustomDelimiter(input);
+        String customDelimiter = GetDelimiter.getDelimiter(input);
 
         // 올바른 구분자 존재시
-        if (validateCustomDelimiter) {
-            String customDelimiter = GetDelimiter.getDelimiter(input);
+        if (customDelimiter != null) {
+
             input = GetDelimiter.removeCustomCondition(input, customDelimiter);
-            return input.split("[,:" + customDelimiter + "+]");
+            return input.split("[,:" + customDelimiter + "]+");
         }
-        return input.split("[,:+]");
+        return input.split("[,:]+");
     }
 }

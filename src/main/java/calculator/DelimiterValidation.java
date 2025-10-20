@@ -2,56 +2,38 @@ package calculator;
 
 public class DelimiterValidation {
 
-    // 구분자가 숫자일 경우
-    public static boolean validateCustomDelimiterChar(String input) {
-        String delimiter = GetDelimiter.getDelimiter(input);
-        if (delimiter == null || delimiter.isEmpty()) {
-            return false;
-        }
-        boolean isChar = delimiter.matches("[a-zA-Z]");
-        return isChar;
-    }
+    // 커스텀 구분자가 존재하는가
 
-    // 구분자가 숫자일 경우
-    public static boolean validateCustomDelimiterDigit(String input) {
-        String delimiter = GetDelimiter.getDelimiter(input);
-        if (delimiter == null || delimiter.isEmpty()) {
-            return false;
-        }
-        boolean isDigit = delimiter.matches("\\d+");
-        return isDigit;
-    }
-
-    // 구분자가 한글자인지 판별
-    public static boolean validateCustomDelimiterLength(String input) {
-        String delimiter = GetDelimiter.getDelimiter(input);
-        if (delimiter == null) {
-            return true;
-        }
-
-        return delimiter.length() == 1;
-    }
-
-    // 구분자 검증
-    public static boolean validateCustomDelimiter(String input) {
+    // 구분자 형식이 잘못 되었을 때
+    public static void validateCustomDlimiterFormat(String input) {
         input = input.replaceAll("\\s", "");
-
+        // 구분자 형식이 잘못 사용되었을 때
         if (!input.startsWith("//") || !input.contains("\\n")) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.WRONG_DELIMITER_FORMAT);
         }
-        if (!validateCustomDelimiterLength(input)) {
-            System.out.println("커스텀 구분자가 한 글자가 아닙니다.");
-            return false;
-        }
-        if (validateCustomDelimiterDigit(input)) {
-            System.out.println("커스텀 구분자가 숫자입니다.");
-            return false;
-        }
-        if (validateCustomDelimiterChar(input)) {
-            System.out.println("커스텀 구분자가 문자입니다.");
-            return false;
+    }
+
+    // 커스텀 구분자 유효성 검사
+    public static void validateCustomDelimiter(String customDelimiter) {
+
+        // 구분자가 없을 때
+        if (customDelimiter.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_CUSTOM_DELIMITER);
         }
 
-        return true;
+        // 커스텀 구분자의 길이가 1보다 클 때
+        if (customDelimiter.length() > 2) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_CUSTOM_DELIMITER_LENGTH);
+        }
+
+        // 음수 기호(-) 커스텀 구분자로 입력 시
+        if ("-".equals(customDelimiter)) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_SIGN_NOT_ALLOW);
+        }
+
+        // 숫자 구분자 입력 시
+        if (customDelimiter.matches("\\d")) {
+            throw new IllegalArgumentException(ErrorMessage.DIGIT_NOT_ALLOW);
+        }
     }
 }
