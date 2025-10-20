@@ -152,6 +152,14 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 이스케이프_문자_상수() {
+        assertSimpleTest(() -> {
+            run("//\\\\n1\\5\\2");
+            assertThat(output()).contains("결과 : 8");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

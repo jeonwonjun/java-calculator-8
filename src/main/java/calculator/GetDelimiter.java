@@ -17,9 +17,9 @@ public class GetDelimiter {
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            String cutomDelimiter = matcher.group(1);
-            DelimiterValidation.validateCustomDelimiter(cutomDelimiter);
-            return cutomDelimiter;
+            String customDelimiter = matcher.group(1);
+            DelimiterValidation.validateCustomDelimiter(customDelimiter);
+            return customDelimiter;
         }
 
         return null;
