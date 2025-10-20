@@ -13,7 +13,5 @@ public class Application {
             Output.printError(e.getMessage());
             throw e;
         }
-
-
     }
 }
