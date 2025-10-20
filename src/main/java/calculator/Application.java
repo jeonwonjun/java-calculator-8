@@ -5,9 +5,15 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-        int result;
-        String input = Input.input();
-        result = Calculator.add(input);
-        Output.output(result);
+        try {
+            String input = Input.input();
+            double result = Calculator.add(input);
+            Output.output(result);
+        } catch (IllegalArgumentException e) {
+            Output.printError(e.getMessage());
+            throw e;
+        }
+
+
     }
 }
