@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Parse {
     public static String[] inputParse(String input) {
         String customDelimiter = GetDelimiter.getDelimiter(input);
-        System.out.println(customDelimiter);
 
         if (Objects.equals(customDelimiter, "\\")) {
             input = input.replaceFirst("//\\\\\\\\n", "");
