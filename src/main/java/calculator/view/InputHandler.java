@@ -1,9 +1,9 @@
 package calculator.view;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import camp.nextstep.edu.missionutils.Console;
 
 public class InputHandler {
-    public static String readInput() {
-        return readLine();
+    public static String read() {
+        return Console.readLine();
     }
 }
